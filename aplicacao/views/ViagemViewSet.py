@@ -1,5 +1,5 @@
 # from rest_framework import viewsets
-# from ..models import Viagem
+# from ..models.py import Viagem
 # from ..serializers import ViagemSerializer
 #
 #

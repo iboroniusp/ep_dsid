@@ -12,9 +12,9 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == True
+DEBUG = True #os.environ.get('DEBUG') == True
 
-ALLOWED_HOSTS = ['https://ep-dsid.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'https://ep-dsid.herokuapp.com']
 
 # Application definition
 
@@ -67,6 +67,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': os.environ.get('DB_NAME', 'database_name'),
+    #     'USER': os.environ.get('DB_USER', 'your_username'),
+    #     'PASSWORD': os.environ.get('DB_PASS', 'your_pass'),
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation

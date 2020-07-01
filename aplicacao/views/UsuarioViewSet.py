@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from ..models.Usuario import Usuario
+from ..models import Usuario
 from ..serializers.UsuarioSerializer import UsuarioSerializer
 
 
