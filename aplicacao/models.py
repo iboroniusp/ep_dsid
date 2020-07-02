@@ -14,7 +14,6 @@ class Usuario(models.Model):
 
 
 class Voo(models.Model):
-    id_voo = models.BigIntegerField()
     nome_companhia = models.CharField(max_length=200, default=default_char)
     classe = models.CharField(max_length=200, default=default_char)
     data_voo = models.CharField(max_length=50, default=default_char)
@@ -28,19 +27,17 @@ class Voo(models.Model):
 
 
 class QuartoHotel(models.Model):
-    id_quarto_hotel = models.BigIntegerField()
     nome_hotel = models.CharField(max_length=200, default=default_char)
     nome_quarto = models.CharField(max_length=200, default=default_char)
-    descricap_quarto = models.CharField(max_length=50, default=default_char)
+    descricao_quarto = models.TextField(max_length=500)
     max_hospedes = models.IntegerField()
     disponivel = models.BooleanField()
 
     def __str__(self):
-        return self.nome_quarto, self.nome_hotel
+        return f"{self.nome_quarto} em {self.nome_hotel}"
 
 
 class Pagamento(models.Model):
-    id_pgto = models.BigIntegerField()
     status = models.CharField(max_length=50, default=default_char)
     valor_total = models.DecimalField(max_digits=10, decimal_places=2)
     parcelas = models.IntegerField()
@@ -56,7 +53,6 @@ class Pagamento(models.Model):
 
 
 class ReservaVoo(models.Model):
-    id_reserva_voo = models.BigIntegerField()
     telefone_contato = models.CharField(max_length=11, default=default_char)
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
     voo = models.ManyToManyField(Voo)
@@ -65,7 +61,6 @@ class ReservaVoo(models.Model):
 
 
 class ReservaQuartoHotel(models.Model):
-    id_reserva_hotel = models.BigIntegerField()
     data_entrada = models.DateTimeField()
     data_saida = models.DateTimeField()
     hospede_principal = models.BooleanField()
@@ -78,6 +73,7 @@ class ReservaQuartoHotel(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
     quarto_hotel = models.OneToOneField(QuartoHotel, on_delete=models.CASCADE)
     pgto = models.OneToOneField(Pagamento, on_delete=models.CASCADE)
+
 
 # class ReservaPacote(models.Model):
 #     # 1:1 com quartoe de hotel e voo
