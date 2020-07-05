@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from aplicacao.views.UsuarioViewSet import UsuarioViewSet
+from aplicacao.views import UsuarioViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
