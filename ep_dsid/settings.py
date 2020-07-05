@@ -12,7 +12,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os.environ.get('DEBUG') == True
+DEBUG = os.environ.get('DEBUG') == True
 
 ALLOWED_HOSTS = ['localhost', 'http://127.0.0.1:8000/', 'http://127.0.0.1,' 'https://ep-dsid.herokuapp.com']
 
