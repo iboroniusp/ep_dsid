@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from aplicacao.views import UsuarioViewSet
+from aplicacao.views import UsuarioViewSet, ReservaViewSet, ReservaVooViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'usuarios', UsuarioViewSet)
+router.register(r'usuario', UsuarioViewSet)
+router.register(r'reservavoo', ReservaVooViewSet)
+router.register(r'reserva', ReservaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

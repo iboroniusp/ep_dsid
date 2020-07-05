@@ -55,17 +55,9 @@ class StatusReserva(models.Model):
         return self.status
 
 
-class Pagamento(models.Model):
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
-    parcelas = models.IntegerField()
-
-    def __str__(self):
-        return str(self.id)
-
-
 class ReservaVoo(models.Model):
-    voo = models.ManyToManyField(Voo)
-    passageiros = models.IntegerField(default=1)
+    voos = models.ManyToManyField(Voo)
+    num_passageiros = models.IntegerField(default=1)
 
     def __str__(self):
         return str(self.id)
@@ -106,13 +98,14 @@ class ReservaQuartoHotel(models.Model):
 
 # reservar um pacote neste caso nada mais é que selecionar um quarto e um voo
 class Reserva(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     telefone_contato = models.CharField(max_length=11, default=default_char)
     reserva_voo = models.OneToOneField(ReservaVoo, on_delete=models.CASCADE, null=True)
     reserva_hotel = models.OneToOneField(ReservaQuartoHotel, on_delete=models.CASCADE, null=True)
     seguro_viagem = models.BooleanField()
-    pgto = models.OneToOneField(Pagamento, on_delete=models.CASCADE)
-    status = models.OneToOneField(StatusReserva, on_delete=models.PROTECT)
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
+    parcelas = models.IntegerField()
+    status = models.ForeignKey(StatusReserva, on_delete=models.PROTECT)
 
     def __str__(self):
         return str(self.id)

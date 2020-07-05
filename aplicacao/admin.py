@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Usuario, Voo, QuartoHotel, ReservaQuartoHotel, \
-    ReservaVoo, Pagamento, ReservaVooPassageiro, \
+    ReservaVoo, ReservaVooPassageiro, \
     TipoDocumento, Reserva, StatusReserva
 
 admin.site.register(Usuario)
@@ -12,7 +12,6 @@ admin.site.register(TipoDocumento)
 admin.site.register(ReservaQuartoHotel)
 admin.site.register(Reserva)
 admin.site.register(StatusReserva)
-admin.site.register(Pagamento)
 
 # NO BANCO:
 # para voo:
