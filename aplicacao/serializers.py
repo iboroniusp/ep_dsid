@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Usuario, Voo, QuartoHotel, ReservaQuartoHotel, \
-    ReservaVoo, Reserva, StatusReserva
+    ReservaVoo, Reserva
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -60,16 +60,14 @@ class ReservaSerializer(serializers.ModelSerializer):
     hotel_required = False if reserva_voo else True
     reserva_hotel = ReservaQuartoHotelSerializer(many=False, required=hotel_required)
     valor_total = serializers.DecimalField(max_digits=10, decimal_places=2, required=False)
-    status = serializers.PrimaryKeyRelatedField(
-        queryset=StatusReserva.objects.all())
     usuario = serializers.PrimaryKeyRelatedField(
         queryset=Usuario.objects.all())
 
     class Meta:
         model = Reserva
         fields = ['id', 'usuario', 'telefone_contato',
-                  'reserva_voo', 'reserva_hotel', 'seguro_viagem',
-                  'valor_total', 'parcelas', 'status', 'data_reserva']
+                  'reserva_voo', 'reserva_hotel',
+                  'valor_total', 'data_reserva']
 
     def create(self, validated_data):
 

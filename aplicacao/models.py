@@ -19,8 +19,8 @@ class Voo(models.Model):
     nome_companhia = models.CharField(max_length=200, default=default_char)
     classe = models.CharField(max_length=200, default=default_char)
     data_voo = models.DateTimeField()
-    aeroporto_origem = models.CharField(max_length=5, default=default_char)
-    aeroporto_destino = models.CharField(max_length=5, default=default_char)
+    aeroporto_origem = models.CharField(max_length=500, default=default_char)
+    aeroporto_destino = models.CharField(max_length=500, default=default_char)
     pais_origem = models.CharField(max_length=100, default=default_char)
     pais_destino = models.CharField(max_length=100, default=default_char)
     valor_total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -86,9 +86,6 @@ class ReservaQuartoHotel(models.Model):
     data_saida = models.DateTimeField()
     hospede_principal = models.BooleanField(default=True)
     nome_hospede_principal = models.CharField(max_length=250, default=default_char)
-    # aqui se hospede_principal for marcado, ja preencher automaticamente com o nome do usuario
-    cafe_da_manha = models.BooleanField()
-    viagem_trabalho = models.BooleanField()
     qtd_hospedes = models.IntegerField()
     quarto_hotel = models.ForeignKey(QuartoHotel, on_delete=models.CASCADE)
 
@@ -102,10 +99,7 @@ class Reserva(models.Model):
     telefone_contato = models.CharField(max_length=11, default=default_char)
     reserva_voo = models.OneToOneField(ReservaVoo, on_delete=models.CASCADE, null=True, related_name="reserva_voo")
     reserva_hotel = models.OneToOneField(ReservaQuartoHotel, on_delete=models.CASCADE, null=True, blank=True)
-    seguro_viagem = models.BooleanField()
     valor_total = models.DecimalField(max_digits=10, decimal_places=2)
-    parcelas = models.IntegerField()
-    status = models.ForeignKey(StatusReserva, on_delete=models.PROTECT)
     data_reserva = models.DateTimeField(auto_now=True)
 
     def __str__(self):
