@@ -106,6 +106,7 @@ class Reserva(models.Model):
     valor_total = models.DecimalField(max_digits=10, decimal_places=2)
     parcelas = models.IntegerField()
     status = models.ForeignKey(StatusReserva, on_delete=models.PROTECT)
+    data_reserva = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.id)

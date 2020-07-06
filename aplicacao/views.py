@@ -14,9 +14,17 @@ class ReservaViewSet(viewsets.ModelViewSet):
     serializer_class = ReservaSerializer
 
 
-class UsuarioReservaList(generics.ListAPIView):
+class ReservaByUsuarioCpf(generics.ListAPIView):
     serializer_class = ReservaSerializer
 
     def get_queryset(self):
         cpf = self.kwargs['cpf']
         return Reserva.objects.filter(usuario__cpf=cpf)
+
+
+class ReservaByUsuarioId(generics.ListAPIView):
+    serializer_class = ReservaSerializer
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        return Reserva.objects.filter(usuario__id=id)
