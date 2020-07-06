@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Usuario, Voo, QuartoHotel, ReservaQuartoHotel, \
-    ReservaVoo, ReservaVooPassageiro, Reserva, StatusReserva
+    ReservaVoo, Reserva, StatusReserva
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -69,7 +69,7 @@ class ReservaSerializer(serializers.ModelSerializer):
         model = Reserva
         fields = ['id', 'usuario', 'telefone_contato',
                   'reserva_voo', 'reserva_hotel', 'seguro_viagem',
-                  'valor_total', 'parcelas', 'status']
+                  'valor_total', 'parcelas', 'status', 'data_reserva']
 
     def create(self, validated_data):
 
