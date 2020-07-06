@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from aplicacao.views import UsuarioViewSet, \
     ReservaByUsuarioId, ReservaByUsuarioCpf, \
-    ReservaViewSet
+    ReservaViewSet, UsuariosByEmailSenha
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -15,4 +15,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('usuarios/cpf/<str:cpf>/reservas/', ReservaByUsuarioCpf.as_view(), name='usuario-cpf-reservas'),
     path('usuarios/id/<int:id>/reservas/', ReservaByUsuarioId.as_view(), name='usuario-id-reservas'),
+    path('usuarios/email=<str:email>&senha=<str:senha>/', UsuariosByEmailSenha.as_view(), name='login'),
 ]

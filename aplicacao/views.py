@@ -28,3 +28,12 @@ class ReservaByUsuarioId(generics.ListAPIView):
     def get_queryset(self):
         id = self.kwargs['id']
         return Reserva.objects.filter(usuario__id=id)
+
+
+class UsuariosByEmailSenha(generics.ListAPIView):
+    serializer_class = UsuarioSerializer
+
+    def get_queryset(self):
+        email = self.kwargs['email']
+        senha = self.kwargs['senha']
+        return Usuario.objects.filter(email=email, senha=senha)
